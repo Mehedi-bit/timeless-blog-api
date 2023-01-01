@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 
 
 export const register = (req, res) => {
+    const TOKEN_SECRET = "648dc74985c7f9a27355ac00f44180f4ebc05088e0faf6d3cab1d0afff101bc4bebf517766a16852669e4bcf6a375afea62780312e626b626ba1a21b0b46ffba";  // @TODO: Remove
 
     // CHECK EXISTING USER
     const q = "SELECT * FROM users WHERE email = ? OR username = ?"
@@ -46,7 +47,7 @@ export const login = (req, res) => {
         bcrypt.compare(plainPassword, hashedPasswordFromDB, function(err, result) {
             if(result) return res.status(400).json("Wrong email or password");
 
-            const token = jwt.sign({id: data[0].id}, process.env.TOKEN_SECRET);
+            const token = jwt.sign({id: data[0].id}, TOKEN_SECRET);
 
             const { password, ...other } = data;
 

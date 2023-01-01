@@ -2,9 +2,9 @@ import express from 'express';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import multer from 'multer';
+// import multer from 'multer';
 
 dotenv.config();
 
@@ -12,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 
 
 const storage = multer.diskStorage({

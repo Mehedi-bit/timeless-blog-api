@@ -1,6 +1,8 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 
+const TOKEN_SECRET = "648dc74985c7f9a27355ac00f44180f4ebc05088e0faf6d3cab1d0afff101bc4bebf517766a16852669e4bcf6a375afea62780312e626b626ba1a21b0b46ffba";  // @TODO: Remove
+
 export const getPosts  = (req, res) => {
     const q = req.query.cat
         ? "SELECT * FROM posts WHERE cat = ?" 
@@ -26,7 +28,7 @@ export const addPost = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Not authenticated!");
   
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, userInfo) => {
+    jwt.verify(token, TOKEN_SECRET, (err, userInfo) => {
       if (err) return res.status(403).json("Token is not valid!");
       console.log('userinfo id is: ', userInfo.id);
   
@@ -56,7 +58,7 @@ export const addPost = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Not authenticated!");
   
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, userInfo) => {
+    jwt.verify(token, TOKEN_SECRET, (err, userInfo) => {
       if (err) return res.status(403).json("Token is not valid!");
   
       const postId = req.params.id;
@@ -81,7 +83,7 @@ export const deletePost = (req, res) => {
     if (!token) return res.status(401).json("Not authenticated!");
   
     // Verify the token, token is valid or not
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, userInfo) => {
+    jwt.verify(token, TOKEN_SECRET, (err, userInfo) => {
       if (err) return res.status(403).json("Token is not valid!");
   
       const postId = req.params.id;
