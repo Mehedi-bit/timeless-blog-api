@@ -6,7 +6,7 @@ import postRoutes from './routes/posts.js';
 import cookieParser from 'cookie-parser';
 // import multer from 'multer';
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
