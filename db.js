@@ -11,6 +11,8 @@ export const db = mysql2.createConnection({
     host: 'containers-us-west-174.railway.app',
     user: 'root',
     password: 'wNMyNMqdiXD1B1iDzz9x',
-    database: 'railway'
+    database: 'railway',
+    port: 7897
 })
+
 
